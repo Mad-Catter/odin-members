@@ -1,5 +1,5 @@
 const getLogin = (req, res) => {
-	res.render('/', {
+	res.render('login', {
 		title: 'Club login',
 	});
 };
