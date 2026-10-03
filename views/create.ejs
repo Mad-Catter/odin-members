@@ -9,7 +9,7 @@
 		<%- include("./partials/header") %>
 		<h1>Account Creation</h1>
         <% if (locals.errors) { %>
-            <%- include("./partials/errors") %>
+            <%- include("./partials/create-errors") %>
         <% } %>
 		<form action="/account" method="post">
 			<label for="email">Email</label>

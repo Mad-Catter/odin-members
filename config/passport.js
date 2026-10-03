@@ -21,7 +21,7 @@ passport.use(
 	}),
 );
 
-passport.serializeUser((user, done) => done(null, user.id));
+passport.serializeUser((user, done) => done(null, user.user_id));
 passport.deserializeUser(async (id, done) => {
 	try {
 		const user = await queries.selectUserById(id);

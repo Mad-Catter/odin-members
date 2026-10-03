@@ -3,9 +3,16 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title><%= title %>></title>
+		<title><%= title %></title>
 	</head>
 	<body>
+		<%- include("./partials/header") %>
+		<!--  -->
+		<% if (locals.user) { %>
+			 <p>You are logged in as <%= locals.user.email %></p>
+		<% } else { %>
+			<p>You are not logged in</p>
+		<% }  %>
 		<h1>I AM INDEX</h1>
 		<a href="/account">Go to account creation</a>
 	</body>
