@@ -53,5 +53,26 @@ const getMembership = (req, res) => {
 		title: 'Club | Membership',
 	});
 };
-const postMembership = async (req, res) => {};
+const postMembership = [
+	body('password').trim(),
+	async (req, res) => {
+		const { password } = matchedData(req);
+		if (password === process.env.MEMBERSHIP_PASSWORD) {
+			// SET ADMIN TRUE HERE.  NEED QUERIES BASED OFF OF USER ID.  ONE TO SET ADMIN AND ONE TO SET MEMBERSHIP.  CAN MEMBER ALWAYS BE CALLED OR WOULD THAT CAUSE ERRORS?
+			if (!req.user.member) {
+				await queries.updateMembership(req.user.user_id);
+			}
+			if (req.body.admin && !req.user.admin) {
+				await queries.updateAdmin(req.user.user_id);
+			}
+			res.redirect('/');
+		} else {
+			return res.status(400).render('membership', {
+				title: 'Club | Membership',
+				// This is the third different error format I have.  I need to standardize this.
+				errors: 'Invalid password',
+			});
+		}
+	},
+];
 module.exports = { getCreate, postCreate, getMembership, postMembership };

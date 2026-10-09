@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title><%= title%></title>
+	</head>
+	<body>
+		<%- include('./partials/header') %>
+		<h1>I am membership</h1>
+		<% if (locals.errors) { %>
+            <%- include("./partials/membership-errors") %>
+        <% } %>
+		<form action="/account/membership" method="post">
+			<label for="password">Enter the secret password</label>
+			<input type="text" id="password" name="password" />
+			<label for="admin">Admin?</label>
+			<input type="checkbox" name="admin" id="admin" <% if (locals.user.member) { %> checked onclick="return false;" <% } %> />
+			<button type="submit">Submit</button>
+		</form>
+	</body>
+</html>
