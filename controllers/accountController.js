@@ -2,14 +2,14 @@ const bcrypt = require('bcryptjs');
 const { body, matchedData, validationResult } = require('express-validator');
 const queries = require('../models/queries');
 
-const getCreate = (req, res) => {
-	res.render('create', {
+const getCreateAccount = (req, res) => {
+	res.render('create-account', {
 		title: 'Club | Create Account',
 	});
 };
 
 // More strict validations could be placed here.  Especially on password.
-// These would have to be mirrored with html form restrictions in /create as well.
+// These would have to be mirrored with html form restrictions in /create-account as well.
 const validateUser = [
 	body('email').trim().isEmail().withMessage('invalid email'),
 	body('email')
@@ -31,12 +31,12 @@ const validateUser = [
 		})
 		.withMessage('password and confirm password do not match'),
 ];
-const postCreate = [
+const postCreateAccount = [
 	validateUser,
 	async (req, res) => {
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
-			return res.status(400).render('create', {
+			return res.status(400).render('create-account', {
 				title: 'Club | Create Account',
 				errors: errors.array(),
 			});
@@ -75,4 +75,4 @@ const postMembership = [
 		}
 	},
 ];
-module.exports = { getCreate, postCreate, getMembership, postMembership };
+module.exports = { getCreateAccount, postCreateAccount, getMembership, postMembership };

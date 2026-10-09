@@ -27,4 +27,13 @@ const updateAdmin = async (id) => {
 	return result;
 };
 
-module.exports = { selectUserByEmail, selectUserById, createUser, updateMembership, updateAdmin };
+const createMessage = async (title, content, user_id) => {
+	const result = await pool.query(`INSERT INTO messages (title, content, user_id, timestamp) VALUES ($1, $2, $3, $4)`, [
+		title,
+		content,
+		user_id,
+		new Date(),
+	]);
+};
+
+module.exports = { selectUserByEmail, selectUserById, createUser, updateMembership, updateAdmin, createMessage };
