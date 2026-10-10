@@ -34,6 +34,24 @@ const createMessage = async (title, content, user_id) => {
 		user_id,
 		new Date(),
 	]);
+	return result;
+};
+const deleteMessageById = async (message_id) => {
+	const result = await pool.query(`DELETE FROM messages WHERE message_id = $1`, [message_id]);
+	return result;
+};
+const selectTenMessages = async (offset) => {
+	const results = await pool.query(`SELECT * FROM messages LIMIT 10 OFFSET (10 * $1)`, [offset]);
+	return results.rows;
 };
 
-module.exports = { selectUserByEmail, selectUserById, createUser, updateMembership, updateAdmin, createMessage };
+module.exports = {
+	selectUserByEmail,
+	selectUserById,
+	createUser,
+	updateMembership,
+	updateAdmin,
+	createMessage,
+	deleteMessageById,
+	selectTenMessages,
+};

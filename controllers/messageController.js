@@ -31,5 +31,10 @@ const postCreateMessage = [
 		res.redirect('/');
 	},
 ];
+const deleteMessage = async (req, res) => {
+	const { message_id } = req.params;
+	await queries.deleteMessageById(message_id);
+	return;
+};
 
-module.exports = { getIndex, getCreateMessage, postCreateMessage };
+module.exports = { getIndex, getCreateMessage, postCreateMessage, deleteMessage };

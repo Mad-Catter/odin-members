@@ -1,0 +1,17 @@
+<div class="message">
+	<div class="message-header">
+		<div class="title">
+			<p><%= (locals.user && locals.user.member) ? msg.email : "*****" %></p>
+		</div>
+		<div class="timestamp">
+			<p><%= (locals.user && locals.user.member) ? msg.timestamp : "*****" %></p>
+		</div>
+	</div>
+	<div class="content">
+        <%= msg.content %>
+        <% if (locals.user && locals.user.admin) { %>
+            <!-- DELETE BUTTON GOES HERE -->
+        <% } %>
+    </div>
+    
+</div>
