@@ -1,9 +1,13 @@
 const { body, matchedData, validationResult } = require('express-validator');
 const queries = require('../models/queries');
 
-const getIndex = (req, res) => {
+const getIndex = async (req, res) => {
+	const offset = Number(req.query.page) || 0;
+	const messages = await queries.selectElevenMessages(offset);
 	res.render('index', {
-		title: 'Club | Home',
+		title: `Club | Home${offset !== 0 ? ' Page ' + offset : ''}`,
+		messages,
+		offset,
 	});
 };
 const getCreateMessage = (req, res) => {
@@ -28,13 +32,13 @@ const postCreateMessage = [
 		}
 		const { title, content } = matchedData(req);
 		await queries.createMessage(title, content, req.user.user_id);
-		res.redirect('/');
+		return res.redirect('/');
 	},
 ];
 const deleteMessage = async (req, res) => {
 	const { message_id } = req.params;
-	await queries.deleteMessageById(message_id);
-	return;
+	const result = await queries.deleteMessageById(message_id);
+	return res.sendStatus(204);
 };
 
 module.exports = { getIndex, getCreateMessage, postCreateMessage, deleteMessage };

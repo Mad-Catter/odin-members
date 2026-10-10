@@ -1,16 +1,20 @@
 <div class="message">
 	<div class="message-header">
-		<div class="title">
+		<div class="author">
 			<p><%= (locals.user && locals.user.member) ? msg.email : "*****" %></p>
 		</div>
 		<div class="timestamp">
 			<p><%= (locals.user && locals.user.member) ? msg.timestamp : "*****" %></p>
 		</div>
 	</div>
+	<div class="title">
+		<p><%= msg.title %></p>
+	</div>
 	<div class="content">
         <%= msg.content %>
         <% if (locals.user && locals.user.admin) { %>
             <!-- DELETE BUTTON GOES HERE -->
+			 <button type="button" onClick="deleteMessage(<%= msg.message_id %>)">Delete Message</button>
         <% } %>
     </div>
     

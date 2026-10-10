@@ -40,8 +40,14 @@ const deleteMessageById = async (message_id) => {
 	const result = await pool.query(`DELETE FROM messages WHERE message_id = $1`, [message_id]);
 	return result;
 };
-const selectTenMessages = async (offset) => {
-	const results = await pool.query(`SELECT * FROM messages LIMIT 10 OFFSET (10 * $1)`, [offset]);
+const selectElevenMessages = async (offset) => {
+	// We select 11 messages but only show 10.
+	// This is because if there are less than 11 messages selected, then there isn't enough messages to justify another next page button
+	// So index can know when to stop adding new next page buttons without having to do a query counting the size of the messages database.
+	const results = await pool.query(
+		`SELECT * FROM messages JOIN users ON users.user_id = messages.user_id ORDER BY timestamp DESC LIMIT 11 OFFSET (10 * $1);`,
+		[offset],
+	);
 	return results.rows;
 };
 
@@ -53,5 +59,5 @@ module.exports = {
 	updateAdmin,
 	createMessage,
 	deleteMessageById,
-	selectTenMessages,
+	selectElevenMessages,
 };

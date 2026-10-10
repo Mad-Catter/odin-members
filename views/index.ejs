@@ -14,6 +14,22 @@
 			<p>You are not logged in</p>
 		<% }  %>
 		<h1>I AM INDEX</h1>
+		<% for (msg of locals.messages.slice(0, 9)) { %>
+			<%- include("./partials/message")%>
+		<% } %>
+		<nav>
+			<%  if (locals.offset !== 0) { %>
+				<!-- I do not want page=0 when just regular home works. -->
+				<%  if (locals.offset === 1) { %>
+					<a href="/">&lang; </a>
+				<% } else {  %>
+					<a href="/?page=<%=(locals. offset -1)%>">&lang; </a>
+				<% } %>
+			<% } %>
+			<%  if (locals.messages.length === 11) { %>
+				<a href="/?page=<%=(locals. offset + 1)%>">&rang; </a>
+			<% } %>
+		</nav>
 	</body>
 	<script>
 		async function deleteMessage(message_id) {
