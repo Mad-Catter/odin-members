@@ -153,7 +153,8 @@ form {
 	margin-right: 15px;
 }
 label,
-input {
+input,
+textarea {
 	font-size: 1.5rem;
 }
 form > button {
