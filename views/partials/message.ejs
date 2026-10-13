@@ -1,15 +1,18 @@
 <div class="message">
 	<div class="message-header">
-		<div class="author">
-			<p><%= (locals.user && locals.user.member) ? msg.email : "*****" %></p>
+		<div class="title">
+			<h2><%= msg.title %></h2>
 		</div>
-		<div class="timestamp">
-			<p><%= (locals.user && locals.user.member) ? msg.timestamp : "*****" %></p>
+		<div class="details">
+			<div class="author">
+				<p>By: <%= (locals.user && locals.user.member) ? msg.email : "*****" %></p>
+			</div>
+			<div class="timestamp">
+				<p>At: <%= (locals.user && locals.user.member) ? msg.timestamp : "*****" %></p>
+			</div>
 		</div>
 	</div>
-	<div class="title">
-		<p><%= msg.title %></p>
-	</div>
+	
 	<div class="content">
         <%= msg.content %>
         <% if (locals.user && locals.user.admin) { %>

@@ -4,6 +4,8 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title><%= title %></title>
+		<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="/style.css" />
 	</head>
 	<body>
 		<%- include("./partials/header") %>
@@ -12,10 +14,14 @@
             <%- include("./partials/create-errors") %>
         <% } %>
 		<form action="/create-message" method="post">
-			<label for="title">Title*:</label>
-			<input type="text" name="title" id="title" maxlength="255" required />
-			<label for="content">Message Content*:</label>
-			<textarea name="content" id="content" required></textarea>
+			<div class="form-row">
+				<label for="title">Title*:</label>
+				<input type="text" name="title" id="title" maxlength="255" required />
+			</div>
+			<div class="form-row-textarea">
+				<label for="content">Message Content*:</label>
+				<textarea name="content" id="content" required></textarea>
+			</div>
 			<button type="submit">Submit</button>
 		</form>
 	</body>

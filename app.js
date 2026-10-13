@@ -36,6 +36,12 @@ app.use('/login', loginRouter);
 app.use('/account', accountRouter);
 app.use('/', messageRouter);
 
+app.use((req, res) => {
+	res.status(404).render('404', {
+		title: 'Club | 404',
+	});
+});
+
 app.use((err, req, res, next) => {
 	console.log(err);
 	res.status(404).render('404', {

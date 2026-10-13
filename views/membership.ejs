@@ -4,6 +4,8 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title><%= title%></title>
+		<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="/style.css" />
 	</head>
 	<body>
 		<%- include('./partials/header') %>
@@ -12,10 +14,16 @@
             <%- include("./partials/membership-errors") %>
         <% } %>
 		<form action="/account/membership" method="post">
-			<label for="password">Enter the secret password</label>
-			<input type="text" id="password" name="password" />
-			<label for="admin">Admin?</label>
-			<input type="checkbox" name="admin" id="admin" <% if (locals.user.member) { %> checked onclick="return false;" <% } %> />
+			
+			<div class="form-row">
+				<label for="password">Enter the secret password</label>
+				<input type="text" id="password" name="password" />
+				
+			</div>
+			<div class="form-row-checkbox">
+				<label for="admin">Admin?</label>
+				<input type="checkbox" name="admin" id="admin" <% if (locals.user.member) { %> checked onclick="return false;" <% } %> />
+			</div>
 			<button type="submit">Submit</button>
 		</form>
 	</body>

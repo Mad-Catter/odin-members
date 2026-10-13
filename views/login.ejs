@@ -4,20 +4,26 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title><%= title%></title>
+		<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="/style.css" />
 	</head>
 	<body>
 		<%- include("./partials/header") %>
-		<h1>I am login</h1>
+		<h1>Login</h1>
 		
 		<% if (locals.errors && locals.errors.length !== 0) { %>
             <%- include("./partials/login-errors") %>
         <% } %>
 
 		<form action="/login" method="post">
-			<label for="username">Username/Email: </label>
-			<input type="email" name="username" id="username" />
-			<label for="password">Password:</label>
-			<input type="password" name="password" id="password" />
+			<div class="form-row">
+				<label for="username">Username/Email: </label>
+				<input type="email" name="username" id="username" />
+			</div>
+			<div class="form-row">
+				<label for="password">Password:</label>
+				<input type="password" name="password" id="password" />
+			</div>
 			<button type="submit">Log In</button>
 		</form>
 	</body>

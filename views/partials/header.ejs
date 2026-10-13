@@ -1,15 +1,22 @@
 <header>
-	<a href="/">home</a>
-	<% if (!locals.user) { %>
-		<a href="/account">Account creation</a>
-		<a href="/login">Login</a>
-	<% } else {%>
-		<a href="/create-message">Create message</a>
-		<!-- There shouldn't be a reason a user is an admin but not a member, but checking for both just to avoid potential issues in the future -->
-		<% if (!locals.user.member || !locals.user.admin) { %>
-			<a href="/account/membership">Gain membership</a>
+	<div class="logo">
+		<h1>Secret</h1>
+		<img src="/images/lips-finger.svg" alt="finger to lips logo">
+		<h1>Club</h1>
+	</div>
+	<nav>
+		<a href="/">Home</a>
+		<% if (!locals.user) { %>
+			<a href="/account">Account creation</a>
+			<a href="/login">Login</a>
+		<% } else {%>
+			<a href="/create-message">Create message</a>
+			<!-- There shouldn't be a reason a user is an admin but not a member, but checking for both just to avoid potential issues in the future -->
+			<% if (!locals.user.member || !locals.user.admin) { %>
+				<a href="/account/membership">Gain membership</a>
+			<% } %>
+			<a href="/login/logout">Logout</a>
 		<% } %>
-		<a href="/login/logout">Logout</a>
-	<% } %>
+	</nav>
 	
 </header>
